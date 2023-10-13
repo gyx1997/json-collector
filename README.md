@@ -1,16 +1,16 @@
 # json-collector
-Collect json objects and convert to structured data with SQL query support。
+Collect json objects and convert to structured data with SQL query support.
 
 
 This tool is used for filtering duplicate Json data and save them for advanced query.
 The motivation that I create this tool is that I need to crawl paginated data from api like posts (threads) of forums; I also don't want 
-Duplicate post(s) may be caught if api with parameter `page` are simpled used, especially for crawlers with low frequency 
+duplicate post(s) may be caught if api with parameter `page` are simpled used, especially for crawlers with low frequency 
 (in this situation, newly replied posts will be displayed on first page as usually they are sorted by reply time). 
-So this tool . In future a server will be developed based on this tool, to accept objects from crawlers and save the data
-in backend database (it may use MySQL backend for larger data).
+So this tool would be helpful when crawling medium amount data and save it for further processing. In future a server will be 
+developed based on this tool, to accept objects from crawlers and save the data in backend database (it may use MySQL backend for larger data).
 
+As it is for my personal purpose, tests are not fully conducted. Pull requests on fixes, or new features are welcome.
 It is also welcome to expand this tool on other data collection scenarios. 
-Pull requests on fixes, or new features are also welcome.
 
 ### Features
 + Accept nested json objects with conversion to structured data.
@@ -37,7 +37,7 @@ Intel Core i7 10700 CPU (4.60GHz Boost)
 
 Intel Optane 800 Series 110GiB SSD with USB3.1 Interface and ~400MiB/s Sequential Read/Write
 
-Insert: ~29000 op/s (In Memory), ~21000 op/s (file on SSD)
+Insert: ~29000 obj/sec (In Memory), ~21000 obj/sec (file on SSD)
 
 Query: Less than 1 seconds when exporting all data to CSV with sorting on indexed keys.
 
@@ -45,7 +45,10 @@ Query: Less than 1 seconds when exporting all data to CSV with sorting on indexe
 
 ### Usage
 #### System Requirement
-Python 3.10 or above. If you want to export the collected data to 
+
+Python 3.10 or above. If you want to export the collected data to pandas.DataFrame, 
+package `pandas` needs to be installed.
+
 #### Example
 Put `collector.py` and `fields.py` under the directory of your own script. 
 ```Python
